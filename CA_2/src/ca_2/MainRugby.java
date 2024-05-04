@@ -4,6 +4,7 @@
  */
 package ca_2;
 
+import ca_2.RugbyMenuOptions.MenuOption;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -83,6 +84,53 @@ public class MainRugby {
             } catch (IOException e) {
                 System.out.println("File not Found. Please, make sure you have the correct file name!");
             }
+        }
+
+        if (fileFound) {
+            // Create an instance of Class to allow us call it on the cases (switch)
+            MainRugby rugbyClub = new MainRugby();
+
+            RugbyMenuOptions.MenuOption selectOption;
+
+            // Create a do while block to process the logic of the main menu
+            do {
+                System.out.println("---------------------------------------------------------------------------------------");
+                System.out.println("| 1. Sort all the Players                                                              |");
+                System.out.println("| 2. Search Players by First Name AND Last Name                                        |");
+                System.out.println("| 3. Add a Player                                                                      |");
+                System.out.println("| 4. Generate Random Player                                                            |");
+                System.out.println("| 5. Exit                                                                              |");
+                System.out.println("----------------------------------------------------------------------------------------");
+
+                // In order to validate the user input, only allowing number. If user input is a String, we block it.
+                if (!myKb.hasNextInt()) {
+                    System.out.println("Please enter a valid number!");
+                    int option = myKb.nextInt();
+
+                    // Validation for the range of number. If the user input a number (i.e 100), but not the number available
+                    // We also block it and display a msg.
+                if (option < 1 || option > MenuOption.values().length) {
+                        System.out.println("Please select from one of the option available above!");
+                    }
+                }
+                while (!myKb.hasNextInt());
+
+                // Assinging the user input to a variable to easier work with it
+                int option = myKb.nextInt();
+
+                //Since the index starts at 0 but user input starts at 1
+                selectOption = RugbyMenuOptions.MenuOption.values()[option - 1];
+
+                // Now that we have the correct option selected from the user
+                // We check which case it matches from the enum
+                switch (selectOption) {
+                    
+                    
+                    // SWITCH LOGIC OF ALL CASES HERE!!!
+                    
+                    
+                }
+            } while (selectOption != RugbyMenuOptions.MenuOption.EXIT);
         }
     }
 }
